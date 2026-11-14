@@ -142,7 +142,7 @@
   }, { threshold: 0.35, rootMargin: '-30% 0px -40% 0px' });
   sections.forEach(function (s) { if (s) navIO.observe(s); });
 
-  /* ─────────── БАРАБАН-ВИТРИНА ─────────── */
+  /* ─────────── БАРАБАН-ВИТРИНА: непрерывное вращение ─────────── */
   var stage = document.getElementById('drumStage');
   var drum = document.getElementById('drum');
   var items = Array.prototype.slice.call(drum.querySelectorAll('.drum__item'));
@@ -150,9 +150,16 @@
   var nameEl = document.getElementById('drumName');
   var metaEl = document.getElementById('drumMeta');
   var step = 360 / items.length;
-  var current = 0;
-  var angle = 0;
-  var autoTimer = null;
+  var angle = -step;            /* стартовый поворот */
+  var speed = -9;               /* градусов в секунду: минус — по часовой */
+  var dragging = false;
+  var dragX = 0;
+  var dragAngle = 0;
+  var activeIdx = -1;
+  var lastTs = 0;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function mod(a, n) { return ((a % n) + n) % n; }
 
   function layout() {
     drum.style.setProperty('--step', step + 'deg');
@@ -162,111 +169,81 @@
     });
   }
 
-  function paint(silent) {
-    drum.style.setProperty('--angle', (-current * step) + 'deg');
-    items.forEach(function (it, i) {
-      var diff = ((i - current) % items.length + items.length) % items.length;
-      it.classList.toggle('is-front', diff === 0);
-    });
-    var active = items[((current % items.length) + items.length) % items.length];
-    if (!silent && active) {
-      nameEl.style.opacity = '0';
-      metaEl.style.opacity = '0';
-      setTimeout(function () {
-        nameEl.textContent = active.dataset.name;
-        metaEl.textContent = active.dataset.meta + ' · коллекция ' + active.dataset.col;
-        nameEl.style.opacity = '1';
-        metaEl.style.opacity = '1';
-      }, 160);
-    }
+  function setFront() {
+    var idx = mod(Math.round(-angle / step), items.length);
+    if (idx === activeIdx) return;
+    activeIdx = idx;
+    items.forEach(function (it, i) { it.classList.toggle('is-front', i === idx); });
+    var a = items[idx];
+    nameEl.style.opacity = '0';
+    metaEl.style.opacity = '0';
+    setTimeout(function () {
+      nameEl.textContent = a.dataset.name;
+      metaEl.textContent = a.dataset.meta + ' · коллекция ' + a.dataset.col;
+      nameEl.style.opacity = '1';
+      metaEl.style.opacity = '1';
+    }, 150);
     Array.prototype.forEach.call(dotsBox.children, function (b, i) {
-      b.classList.toggle('is-active', i === (((current % items.length) + items.length) % items.length));
-      b.setAttribute('aria-current', i === (((current % items.length) + items.length) % items.length) ? 'true' : 'false');
+      b.classList.toggle('is-active', i === idx);
+      b.setAttribute('aria-current', i === idx ? 'true' : 'false');
     });
   }
 
-  function go(stepDelta) {
-    current += stepDelta;
-    paint();
+  function tick(ts) {
+    var dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.06) : 0.016;
+    lastTs = ts;
+    if (!dragging && !reduceMotion) angle += speed * dt;
+    drum.style.setProperty('--angle', angle.toFixed(2) + 'deg');
+    setFront();
+    requestAnimationFrame(tick);
   }
-
-  function startAuto() {
-    stopAuto();
-    if (reduce || document.hidden) return;
-    autoTimer = setInterval(function () { go(1); }, 5200);
-  }
-  function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
 
   if (stage) {
     layout();
-    items.forEach(function (it) { it.style.setProperty('--i', it.dataset.index); });
-    drum.style.setProperty('--i', 0);
     items.forEach(function (it, i) {
       var dot = document.createElement('button');
       dot.type = 'button';
       dot.setAttribute('aria-label', 'Показать ' + it.dataset.name);
-      dot.addEventListener('click', function () {
-        current = i; paint(); startAuto();
-      });
+      dot.addEventListener('click', function () { angle = -i * step; setFront(); });
       dotsBox.appendChild(dot);
     });
-    paint(true);
-    startAuto();
+    setFront();
+    requestAnimationFrame(tick);
 
-    stage.addEventListener('mouseenter', stopAuto);
-    stage.addEventListener('mouseleave', startAuto);
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stopAuto(); else startAuto();
-    });
+    document.getElementById('drumPrev').addEventListener('click', function () { angle -= step; });
+    document.getElementById('drumNext').addEventListener('click', function () { angle += step; });
 
-    document.getElementById('drumPrev').addEventListener('click', function () { go(-1); startAuto(); });
-    document.getElementById('drumNext').addEventListener('click', function () { go(1); startAuto(); });
-
-    /* перетаскивание */
-    var dragging = false;
-    var startX = 0;
-    var startCurrent = 0;
-    var moved = 0;
-
+    /* перетаскивание мышью/пальцем: крутим дальше с того места */
     stage.addEventListener('pointerdown', function (e) {
       dragging = true;
-      moved = 0;
-      startX = e.clientX;
-      startCurrent = current;
+      dragX = e.clientX;
+      dragAngle = angle;
       stage.classList.add('is-dragging');
-      stopAuto();
       stage.setPointerCapture(e.pointerId);
     });
     stage.addEventListener('pointermove', function (e) {
       if (!dragging) return;
-      var dx = e.clientX - startX;
-      moved += Math.abs(dx);
-      var shift = dx / (stage.clientWidth * 0.14);
-      current = startCurrent - shift;
-      drum.style.setProperty('--angle', (-current * step) + 'deg');
+      angle = dragAngle - (e.clientX - dragX) * 0.35;
     });
-    function endDrag(e) {
+    function endDrag() {
       if (!dragging) return;
       dragging = false;
       stage.classList.remove('is-dragging');
-      current = Math.round(current);
-      paint();
-      startAuto();
     }
     stage.addEventListener('pointerup', endDrag);
     stage.addEventListener('pointercancel', endDrag);
-    stage.addEventListener('pointerleave', function (e) { if (dragging) endDrag(e); });
+    stage.addEventListener('pointerleave', endDrag);
 
     /* клавиатура */
     stage.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { go(-1); startAuto(); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { go(1); startAuto(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { angle -= step; e.preventDefault(); }
+      if (e.key === 'ArrowRight') { angle += step; e.preventDefault(); }
     });
 
     var resizeTimer = null;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () { layout(); paint(true); }, 160);
+      resizeTimer = setTimeout(layout, 160);
     });
   }
 
