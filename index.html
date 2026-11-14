@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru" data-theme="deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENTRO — межкомнатные двери с архитектурным характером</title>
+<meta name="description" content="ENTRO — межкомнатные двери с эксклюзивным дизайном. Коллекции ARIA, ZERO, MAGIC, RIFT и другие. Собственное производство в Новочебоксарске с 2022 года.">
+<meta property="og:title" content="ENTRO — двери, которые становятся архитектурой">
+<meta property="og:description" content="Концепт главной страницы ENTRO: заставка, кинематографичный первый экран, миссия, две коллекции и витрина-барабан.">
+<meta property="og:image" content="assets/img/hero.jpg">
+<meta name="theme-color" content="#0A1E25">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/img/logo-entro.png">
+</head>
+<body>
+
+<!-- ══════════ ЗАСТАВКА ══════════ -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash__glow"></div>
+  <div class="splash__inner">
+    <div class="splash__word">ENTRO</div>
+    <div class="splash__rule"></div>
+    <div class="splash__tag">межкомнатные двери</div>
+  </div>
+  <div class="splash__foot">
+    <span>с 2022 года</span>
+    <span class="splash__bar"><i></i></span>
+    <span>Новочебоксарск</span>
+  </div>
+  <button class="splash__skip" id="splashSkip" type="button">Пропустить</button>
+</div>
+
+<!-- ══════════ ХЕДЕР ══════════ -->
+<header class="head" id="head">
+  <div class="head__grid">
+    <nav class="head__nav" aria-label="Основная навигация">
+      <a href="#hero" class="is-active">Главная</a>
+      <a href="#collections">Каталог</a>
+      <a href="#mission">Компания</a>
+      <a href="#dealer">Стать дилером</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <a class="brand" href="#hero" aria-label="ENTRO — на главную">
+      <span class="brand__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand__name">ENTRO</span>
+      <span class="brand__sub">doors</span>
+    </a>
+
+    <div class="head__tools">
+      <button class="tool" type="button" aria-label="Поиск по сайту" data-open-search>
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M16 16l4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </button>
+      <button class="tool" type="button" aria-label="Личный кабинет">
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="12" cy="8.2" r="3.7" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M4.9 20.2c1.1-3.7 3.8-5.6 7.1-5.6s6 1.9 7.1 5.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </button>
+      <button class="tool head__burger" type="button" aria-label="Меню" aria-expanded="false" id="burger">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav aria-label="Мобильная навигация">
+    <a href="#hero">Главная</a>
+    <a href="#collections">Каталог</a>
+    <a href="#mission">Компания</a>
+    <a href="#dealer">Стать дилером</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="tel:+79877350040">8 987 735 00 40</a>
+    <a href="mailto:Zakaz@entro-design.ru">Zakaz@entro-design.ru</a>
+  </div>
+</div>
+
+<div class="searchbar" id="searchbar" aria-hidden="true">
+  <form class="searchbar__form" onsubmit="return false">
+    <input type="search" placeholder="Модель, коллекция, покрытие…" aria-label="Поиск">
+    <button type="button" class="searchbar__close" data-close-search aria-label="Закрыть поиск">×</button>
+  </form>
+</div>
+
+<main>
+<!-- ══════════ ЭКРАН 1: ГЛАВНЫЙ ══════════ -->
+<section class="hero" id="hero">
+  <div class="stage" aria-hidden="true">
+    <div class="stage__img"></div>
+    <div class="stage__fog stage__fog--a"></div>
+    <div class="stage__fog stage__fog--b"></div>
+    <div class="stage__rays"></div>
+    <div class="stage__grain"></div>
+    <div class="stage__vignette"></div>
+    <video class="stage__film" id="heroFilm" muted loop playsinline autoplay preload="metadata">
+      <source src="assets/film.webm" type="video/webm">
+    </video>
+    <div class="stage__shade"></div>
+  </div>
+
+  <div class="hero__content">
+    <p class="eyebrow"><span>exclusive doors</span><span class="dot">·</span><span>est. 2022</span></p>
+    <h1 class="hero__title">
+      <span>Двери, которые</span>
+      <span>становятся <em>архитектурой</em></span>
+    </h1>
+    <p class="hero__lead">Межкомнатные двери ENTRO — эксклюзивный дизайн, ручная детализация и&nbsp;собственное производство полного цикла.</p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href="#collections">Смотреть каталог</a>
+      <a class="btn btn--ghost" href="#dealer">Стать дилером</a>
+    </div>
+  </div>
+
+  <!-- двери вместо людей: линия пола -->
+  <div class="floor" aria-hidden="true">
+    <div class="floor__rows" id="doorRow">
+      <figure class="floor__door" style="--h:1;--t:.00s"><img src="assets/img/door-l4.png" alt=""></figure>
+      <figure class="floor__door" style="--h:.94;--t:.06s"><img src="assets/img/door-b7.png" alt=""></figure>
+      <figure class="floor__door floor__door--main" style="--h:1.08;--t:.12s"><img src="assets/img/door-unico.png" alt=""></figure>
+      <figure class="floor__door" style="--h:.97;--t:.18s"><img src="assets/img/door-pr4.png" alt=""></figure>
+      <figure class="floor__door" style="--h:.92;--t:.24s"><img src="assets/img/door-ln9.png" alt=""></figure>
+      <figure class="floor__door" style="--h:1;--t:.30s"><img src="assets/img/door-architect.png" alt=""></figure>
+    </div>
+    <div class="floor__line"></div>
+  </div>
+
+  <div class="hero__meta">
+    <span class="hero__meta-label">видео-концепт</span>
+    <span class="hero__meta-note">бесшовный цикл 8 с · заменить на фильм заказчика</span>
+  </div>
+
+  <a class="scrollcue" href="#mission" aria-label="Листать вниз">
+    <span>миссия компании</span>
+    <i></i>
+  </a>
+</section>
+
+<!-- ══════════ ЭКРАН 2: МИССИЯ ══════════ -->
+<section class="mission" id="mission">
+  <div class="wrap">
+    <div class="mission__head reveal">
+      <span class="kicker">01 — миссия</span>
+      <h2 class="mission__title">Миссия компании</h2>
+    </div>
+    <p class="mission__text js-words">С&nbsp;2022 года компания ENTRO создает межкомнатные двери с&nbsp;эксклюзивным и&nbsp;индивидуальным дизайном, уделяя особое внимание стилю, и&nbsp;делая акцент на&nbsp;деталях. Результат такого подхода&nbsp;— неповторимые продукты, которые создает команда ENTRO</p>
+    <div class="mission__facts">
+      <div class="fact reveal"><b>2022</b><span>год основания<br>производства</span></div>
+      <div class="fact reveal"><b>12</b><span>коллекций<br>в каталоге</span></div>
+      <div class="fact reveal"><b>24</b><span>вида стекла<br>в ассортименте</span></div>
+      <div class="fact reveal"><b>ПВХ</b><span>покрытия от&nbsp;американского<br>ореха до&nbsp;мрамора</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ЭКРАН 3: ДВЕ КОЛЛЕКЦИИ ══════════ -->
+<section class="collections" id="collections">
+  <div class="rail" aria-hidden="true">
+    <div class="rail__band"></div>
+    <div class="rail__glow"></div>
+    <span class="rail__label">коллекции 2025 / 2026</span>
+  </div>
+
+  <div class="wrap">
+    <div class="collections__head reveal">
+      <span class="kicker">02 — коллекции</span>
+      <h2 class="collections__title">Две коллекции,<br>два характера</h2>
+      <p class="collections__lead">Каждая коллекция&nbsp;— законченная система: полотно, короб, наличник, стекло и&nbsp;покрытие подбираются в&nbsp;одном ключе.</p>
+    </div>
+
+    <div class="collections__grid">
+      <a class="card reveal" href="#showcase" data-door="aria">
+        <div class="card__media">
+          <span class="card__halo"></span>
+          <img class="card__door" src="assets/img/door-m3.png" alt="Дверь коллекции ARIA — мрамор">
+          <img class="card__render" src="assets/img/render-aria.png" alt="Дверь ARIA в 3/4, рендер из 3D-модели ENTRO">
+        </div>
+        <div class="card__body">
+          <span class="card__index">01</span>
+          <h3 class="card__name">ARIA</h3>
+          <p class="card__meta">мрамор · эмаль · стекло с&nbsp;фрезеровкой</p>
+          <span class="card__link">Смотреть коллекцию <i>→</i></span>
+        </div>
+      </a>
+
+      <a class="card reveal" href="#showcase" data-door="magic">
+        <div class="card__media">
+          <span class="card__halo"></span>
+          <img class="card__door" src="assets/img/door-ln9.png" alt="Дверь коллекции MAGIC — эмаль и стекло">
+          <img class="card__render" src="assets/img/render-magic.png" alt="Дверь MAGIC в 3/4, рендер из 3D-модели ENTRO">
+        </div>
+        <div class="card__body">
+          <span class="card__index">02</span>
+          <h3 class="card__name">MAGIC</h3>
+          <p class="card__meta">эмаль · скрытая кромка · зеркало</p>
+          <span class="card__link">Смотреть коллекцию <i>→</i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="collections__fade"></div>
+</section>
+
+<!-- ══════════ ЭКРАН 4: ВИТРИНА-БАРАБАН ══════════ -->
+<section class="showcase" id="showcase">
+  <div class="wrap">
+    <div class="showcase__head">
+      <div class="reveal">
+        <span class="kicker">03 — витрина</span>
+        <h2 class="showcase__title">Витрина коллекций</h2>
+      </div>
+      <p class="showcase__lead reveal">Крутите барабан — двери сменяют друг друга. Перетаскивайте мышью или стрелками.</p>
+    </div>
+  </div>
+
+  <div class="drum-wrap">
+    <button class="drum-btn drum-btn--prev" id="drumPrev" type="button" aria-label="Предыдущая дверь">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M14.5 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="drum-stage" id="drumStage" tabindex="0" role="group" aria-label="Витрина дверей, крутится по горизонтали">
+      <div class="drum" id="drum">
+        <figure class="drum__item" data-name="UNICO" data-meta="эмаль · каннелюры" data-col="UNICO"><img src="assets/img/door-unico.png" alt="Дверь UNICO, эмаль с каннелюрами"></figure>
+        <figure class="drum__item" data-name="ARIA" data-meta="мрамор · скрытая кромка" data-col="ARIA"><img src="assets/img/door-m3.png" alt="Дверь ARIA, мрамор"></figure>
+        <figure class="drum__item" data-name="ZERO" data-meta="графит · скрытая кромка" data-col="ZERO"><img src="assets/img/door-s12.png" alt="Дверь ZERO, графит"></figure>
+        <figure class="drum__item" data-name="RIFT" data-meta="зеркало графит · золото" data-col="RIFT"><img src="assets/img/door-m6.png" alt="Дверь RIFT, зеркало графит с золотом"></figure>
+        <figure class="drum__item" data-name="PR 4" data-meta="арка · каннелюры" data-col="PR"><img src="assets/img/door-pr4.png" alt="Дверь PR 4, арка с каннелюрами"></figure>
+        <figure class="drum__item" data-name="MAGIC" data-meta="эмаль · стекло" data-col="MAGIC"><img src="assets/img/door-ln9.png" alt="Дверь MAGIC, эмаль со стеклом"></figure>
+        <figure class="drum__item" data-name="L4" data-meta="белая эмаль · 3 панели" data-col="LINE"><img src="assets/img/door-l4.png" alt="Дверь L4, белая эмаль"></figure>
+        <figure class="drum__item" data-name="ARCHITECT" data-meta="стекло · алюминий" data-col="ARCHITECT"><img src="assets/img/door-architect.png" alt="Дверь ARCHITECT со стеклом"></figure>
+        <figure class="drum__item" data-name="B7" data-meta="шпон ореха · рейка" data-col="BAND"><img src="assets/img/door-b7.png" alt="Дверь B7, шпон ореха"></figure>
+      </div>
+    </div>
+
+    <button class="drum-btn drum-btn--next" id="drumNext" type="button" aria-label="Следующая дверь">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9.5 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="drum-caption">
+    <div class="drum-caption__name" id="drumName">UNICO</div>
+    <div class="drum-caption__meta" id="drumMeta">эмаль · каннелюры · коллекция UNICO</div>
+    <div class="drum-dots" id="drumDots"></div>
+  </div>
+</section>
+
+<!-- ══════════ ЭКРАН 5: ДИЛЕРАМ + КОНТАКТЫ ══════════ -->
+<section class="dealer" id="dealer">
+  <div class="wrap dealer__grid">
+    <div class="dealer__intro reveal">
+      <span class="kicker">04 — партнёрам</span>
+      <h2 class="dealer__title">Стать дилером<br>ENTRO</h2>
+      <p class="dealer__text">Собственное производство полного цикла, гибкие условия и&nbsp;поддержка на&nbsp;каждом этапе: от&nbsp;размещения образцов до&nbsp;запуска продаж в&nbsp;вашем городе.</p>
+      <ul class="dealer__list">
+        <li>Дилерские цены и&nbsp;защита территории</li>
+        <li>Образцы, каталоги и&nbsp;визуалы для соцсетей</li>
+        <li>Помощь с&nbsp;первым заказом и&nbsp;расчётом</li>
+      </ul>
+    </div>
+
+    <form class="dealer__form reveal" id="dealerForm" novalidate>
+      <div class="field">
+        <label for="fName">Имя</label>
+        <input id="fName" name="name" type="text" placeholder="Как к вам обращаться" required>
+      </div>
+      <div class="field">
+        <label for="fCity">Город</label>
+        <input id="fCity" name="city" type="text" placeholder="Где планируете продавать">
+      </div>
+      <div class="field">
+        <label for="fPhone">Телефон</label>
+        <input id="fPhone" name="phone" type="tel" placeholder="+7 ___ ___ __ __" required>
+      </div>
+      <button class="btn btn--solid btn--wide" type="submit">Отправить заявку</button>
+      <p class="dealer__note" id="formNote">Концепт-демо: заявка не&nbsp;отправляется, форма показывает сценарий.</p>
+    </form>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap contacts__grid">
+    <div class="contacts__block reveal">
+      <span class="kicker">05 — контакты</span>
+      <h2 class="contacts__title">Производство<br>и&nbsp;шоурум</h2>
+      <address>
+        ООО «ЭНТРО»<br>
+        Чувашская Республика,<br>
+        г.&nbsp;Новочебоксарск, Промышленная&nbsp;52
+      </address>
+    </div>
+    <div class="contacts__block reveal">
+      <a class="contacts__phone" href="tel:+79877350040">8 987 735 00 40</a>
+      <a class="contacts__phone" href="tel:+79199727942">8 919 972-79-42</a>
+      <a class="contacts__mail" href="mailto:Zakaz@entro-design.ru">Zakaz@entro-design.ru</a>
+    </div>
+    <div class="contacts__block reveal">
+      <ul class="contacts__links">
+        <li><a href="#collections">Каталог дизайнерских дверей 2025/2026</a></li>
+        <li><a href="#dealer">Стать дилером</a></li>
+        <li><a href="#showcase">Смотреть витрину</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__top">
+    <a class="brand brand--foot" href="#hero">
+      <span class="brand__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand__name">ENTRO</span>
+      <span class="brand__sub">doors</span>
+    </a>
+    <nav class="foot__nav" aria-label="Меню в подвале">
+      <div>
+        <h4>Продукция</h4>
+        <a href="#collections">Межкомнатные двери</a>
+        <a href="#collections">Стеновые панели</a>
+        <a href="#collections">Декоративные рейки</a>
+        <a href="#collections">Погонажные изделия</a>
+        <a href="#collections">Стекла</a>
+        <a href="#collections">Покрытия</a>
+      </div>
+      <div>
+        <h4>Информация</h4>
+        <a href="#mission">О компании</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#dealer">Стать дилером</a>
+        <a href="#hero">Политика обработки данных</a>
+      </div>
+    </nav>
+    <div class="foot__contact">
+      <a href="tel:+79877350040">8 987 735 00 40</a>
+      <a href="mailto:Zakaz@entro-design.ru">Zakaz@entro-design.ru</a>
+      <span>© ООО «ЭНТРО» 2025</span>
+    </div>
+  </div>
+  <div class="wrap foot__bottom">
+    <span>Концепт-демо главной страницы ENTRO · дизайн-предложение, не&nbsp;официальный сайт</span>
+    <span>Изображения — рендеры и&nbsp;фото ENTRO</span>
+  </div>
+</footer>
+
+<!-- ══════════ ПАНЕЛЬ СТИЛЯ ══════════ -->
+<aside class="stylebar" id="stylebar">
+  <button class="stylebar__toggle" id="styleToggle" type="button" aria-expanded="false" aria-controls="stylePanel">
+    <span class="stylebar__dot"></span> Стиль
+  </button>
+  <div class="stylebar__panel" id="stylePanel">
+    <p class="stylebar__title">Палитра</p>
+    <div class="swatches" role="group" aria-label="Выбор палитры">
+      <button class="swatch is-active" type="button" data-theme-option="deep" data-set-theme="deep" aria-pressed="true"><i style="--c1:#0A1E25;--c2:#1B4E5C;--c3:#D7B58A"></i><span>Глубина</span></button>
+      <button class="swatch" type="button" data-theme-option="terra" data-set-theme="terra" aria-pressed="false"><i style="--c1:#F3EDE4;--c2:#E0D3C3;--c3:#A9502E"></i><span>Терракота</span></button>
+      <button class="swatch" type="button" data-theme-option="graphite" data-set-theme="graphite" aria-pressed="false"><i style="--c1:#101214;--c2:#23282A;--c3:#A8B2AF"></i><span>Графит</span></button>
+    </div>
+    <button class="stylebar__replay" id="replaySplash" type="button">Показать заставку</button>
+  </div>
+</aside>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
